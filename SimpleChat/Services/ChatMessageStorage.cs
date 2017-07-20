@@ -16,15 +16,11 @@
 
 		public ChatMessageStorage(IChatMessageIdGenerator chatMessageIdGenerator)
 		{
-			if (chatMessageIdGenerator == null) throw new ArgumentNullException(nameof(chatMessageIdGenerator));
-
-			_chatMessageIdGenerator = chatMessageIdGenerator;
+			_chatMessageIdGenerator = chatMessageIdGenerator ?? throw new ArgumentNullException(nameof(chatMessageIdGenerator));
 		}
 
-		public async Task<IEnumerable<ChatMessageModel>> Pull()
-		{
-			return await Task.Run(() => _messageQueue.AsEnumerable());
-		}
+		public async Task<IEnumerable<ChatMessageModel>> Pull() =>
+			await Task.Factory.StartNew(() => _messageQueue.AsEnumerable());
 
 		public async Task Push(ChatMessageModel chatMessage)
 		{
