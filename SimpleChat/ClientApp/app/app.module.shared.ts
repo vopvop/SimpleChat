@@ -6,14 +6,16 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 export const sharedConfig: NgModule = {
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
     declarations: [
         AppComponent,
         NavMenuComponent,
         CounterComponent,
         FetchDataComponent,
+        ChatComponent,
         HomeComponent
     ],
     imports: [
@@ -22,6 +24,7 @@ export const sharedConfig: NgModule = {
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'chat', component: ChatComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
