@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 	selector: 'counter',
 	templateUrl: './counter.component.html'
 })
+
 export class CounterComponent {
 	public currentCount = 0;
 

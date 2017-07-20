@@ -6,6 +6,7 @@
 				<span class='icon-bar'></span>
 				<span class='icon-bar'></span>
 				<span class='icon-bar'></span>
+				<span class='icon-bar'></span>
 			</button>
 			<a class='navbar-brand' [routerLink]="['/home']">WebApplicationBasic</a>
 		</div>
@@ -25,6 +26,11 @@
 				<li [routerLinkActive]="['link-active']">
 					<a [routerLink]="['/fetch-data']">
 						<span class='glyphicon glyphicon-th-list'></span> Fetch data
+					</a>
+				</li>
+				<li [routerLinkActive]="['link-active']">
+					<a [routerLink]="['/chat']">
+						<span class='glyphicon glyphicon-th-list'></span> Chat
 					</a>
 				</li>
 			</ul>
