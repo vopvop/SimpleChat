@@ -17,9 +17,7 @@
 			_connectionManager = connectionManager ?? throw new ArgumentNullException(nameof(connectionManager));
 		}
 
-		public async Task Push(ChatMessageModel chatMessage)
-		{
+		public async Task Push(ChatMessageModel chatMessage) =>
 			await _connectionManager.GetHubContext<ChatHub>().Clients.All.Send(chatMessage);
-		}
 	}
 }

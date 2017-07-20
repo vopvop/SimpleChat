@@ -1,6 +1,4 @@
-﻿// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace SimpleChat.Controllers
+﻿namespace SimpleChat.Controllers
 {
 	using System;
 	using System.Collections.Generic;
@@ -23,10 +21,7 @@ namespace SimpleChat.Controllers
 
 		// DELETE api/chat/<guid>
 		[HttpDelete("{id}")]
-		public void Delete(Guid id)
-		{
-			throw new NotImplementedException();
-		}
+		public void Delete(Guid id) => throw new NotImplementedException();
 
 		// GET: api/chat
 		[HttpGet]
@@ -34,10 +29,7 @@ namespace SimpleChat.Controllers
 
 		// GET api/chat/<guid>
 		[HttpGet("{id}")]
-		public string Get(Guid id)
-		{
-			throw new NotImplementedException();
-		}
+		public string Get(Guid id) => throw new NotImplementedException();
 
 		// POST api/chat
 		[HttpPost]
@@ -46,9 +38,6 @@ namespace SimpleChat.Controllers
 
 		// PUT api/chat/<guid>
 		[HttpPut("{id}")]
-		public void Put(Guid id, [FromBody] string value)
-		{
-			throw new NotImplementedException();
-		}
+		public void Put(Guid id, [FromBody] string value) => throw new NotImplementedException();
 	}
 }

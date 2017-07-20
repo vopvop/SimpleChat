@@ -5,9 +5,6 @@
 
 	internal sealed class ChatMessageIdGenerator: IChatMessageIdGenerator
 	{
-		public async Task<Guid> GetNext()
-		{
-			return await Task.Run(() => Guid.NewGuid());
-		}
+		public async Task<Guid> GetNext() => await Task.Factory.StartNew(() => Guid.NewGuid());
 	}
 }
