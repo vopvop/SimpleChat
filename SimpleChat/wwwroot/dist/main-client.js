@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5f6524db50dec497de64"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b064021f1c1171e40a87"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1619,8 +1619,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var ChatComponent = (function () {
     function ChatComponent() {
+        this.currentMessage = new ChatMessage();
         this.currentMessage.id = "message Id";
-        this.currentMessage.messae = "chat messae";
+        this.currentMessage.message = "chat messae";
     }
     return ChatComponent;
 }());
@@ -1632,6 +1633,12 @@ ChatComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], ChatComponent);
 exports.ChatComponent = ChatComponent;
+var ChatMessage = (function () {
+    function ChatMessage() {
+    }
+    return ChatMessage;
+}());
+exports.ChatMessage = ChatMessage;
 
 
 /***/ }),
