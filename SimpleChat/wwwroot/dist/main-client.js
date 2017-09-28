@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b064021f1c1171e40a87"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2c156d509c281fde6d77"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1612,29 +1612,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var ChatComponent = (function () {
     function ChatComponent() {
-        this.currentMessage = new ChatMessage();
-        this.currentMessage.id = "message Id";
-        this.currentMessage.message = "chat messae";
+        this.chatMessage = new ChatMessage();
     }
+    ChatComponent.prototype.sendMessage = function () {
+        alert(this.chatMessage.message);
+    };
     return ChatComponent;
 }());
 ChatComponent = __decorate([
     core_1.Component({
         selector: 'chat',
         template: __webpack_require__(24)
-    }),
-    __metadata("design:paramtypes", [])
+    })
 ], ChatComponent);
 exports.ChatComponent = ChatComponent;
 var ChatMessage = (function () {
     function ChatMessage() {
+        this.id = "-1";
+        this.message = "new message";
     }
     return ChatMessage;
 }());
@@ -2135,7 +2134,7 @@ module.exports = "<div class='container-fluid'>\r\n    <div class='row'>\r\n    
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Chat</h1>\r\n\r\nCurrent message: {{currentMessage.id}} # {{currentMessage.message}}";
+module.exports = "<h1>Chat</h1>\r\n<br/>\r\nCurrent message: {{chatMessage.message}}<br />\r\n<br/>\r\nMessage: <input [(ngModel)]='chatMessage.message' /><br/>\r\n<button id=\"sendButton\" (click)=\"sendMessage()\">Send</button>";
 
 /***/ }),
 /* 25 */

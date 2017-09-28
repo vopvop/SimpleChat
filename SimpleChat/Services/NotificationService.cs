@@ -3,21 +3,22 @@
 	using System;
 	using System.Threading.Tasks;
 
-	using Microsoft.AspNetCore.SignalR.Infrastructure;
+	using Microsoft.AspNetCore.SignalR;
 
 	using SimpleChat.Hubs;
 	using SimpleChat.Models;
 
+
 	internal sealed class NotificationService: INotificationService
 	{
-		private readonly IConnectionManager _connectionManager;
+		private readonly IHubContext<ChatHub> _context;
 
-		public NotificationService(IConnectionManager connectionManager)
+		public NotificationService(IHubContext<ChatHub> context)
 		{
-			_connectionManager = connectionManager ?? throw new ArgumentNullException(nameof(connectionManager));
+			_context = context ?? throw new ArgumentNullException(nameof(context));
 		}
 
 		public async Task Push(ChatMessageModel chatMessage) =>
-			await _connectionManager.GetHubContext<ChatHub>().Clients.All.Send(chatMessage);
+			await _context.Clients.All.InvokeAsync("Send", chatMessage);
 	}
 }
