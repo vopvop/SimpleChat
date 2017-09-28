@@ -1,3 +1,6 @@
 ﻿<h1>Chat</h1>
-
-Current message: {{currentMessage.id}} # {{currentMessage.message}}
+<br/>
+Current message: {{chatMessage.message}}<br />
+<br/>
+Message: <input [(ngModel)]='chatMessage.message' /><br/>
+<button id="sendButton" (click)="sendMessage()">Send</button>

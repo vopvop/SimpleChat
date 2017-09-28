@@ -6,7 +6,7 @@ namespace SimpleChat
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
-
+	using SimpleChat.Hubs;
 	using SimpleChat.Services;
 
 	public sealed class Startup
@@ -45,6 +45,8 @@ namespace SimpleChat
 
 			app.UseStaticFiles();
 
+			app.UseSignalR(routes => routes.MapHub<ChatHub>("chathub"));
+
 			app.UseMvc(
 				routes =>
 				{
@@ -60,9 +62,6 @@ namespace SimpleChat
 							action = "Index"
 						});
 				});
-
-			app.UseWebSockets();
-			app.UseSignalR();
 		}
 
 		// This method gets called by the runtime. Use this method to add services to the container.

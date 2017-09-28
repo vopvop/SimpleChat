@@ -5,17 +5,16 @@
 	templateUrl: './chat.component.html'
 })
 export class ChatComponent {
-	public currentMessage: ChatMessage;
 
-	constructor() {
-		this.currentMessage = new ChatMessage();
+	chatMessage: ChatMessage = new ChatMessage();
 
-		this.currentMessage.id = "message Id";
-		this.currentMessage.message = "chat messae";
+	sendMessage()
+	{
+		alert(this.chatMessage.message);
 	}
 }
 
 export class ChatMessage {
-	id: string;
-	message: string;
+	id: string = "-1";
+	message: string = "new message";
 }
