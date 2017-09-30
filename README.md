@@ -1,13 +1,13 @@
 # Simple chat
-Another one example of text message exchange service. Based on:
+Another one example of text messages exchange service. Based on the next libs list:
 1. ASP.NET Core 2.0;
 1. SignalR 1.0.0-alpha1-final for ASP.NET Coer 2.0;
 1. Angular 4.1.2;
 1. Typescript 2.3.
 ## How to
-To implement SignalR on ASP.NET Core you should:
+To implement SignalR usage on ASP.NET Core app you should:
 1. Create ASP.NET Core project;
-1. Add NuGet references to:
+1. Add NuGet references to the next libs:
     1. `Microsoft.AspNetCore.All`;
     1. `Microsoft.AspNetCore.SignalR`.
 1. Implement nested from `Hub` or `Hub<T>` class:
