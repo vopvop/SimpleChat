@@ -1,6 +1,18 @@
 ﻿<h1>Chat</h1>
-<br/>
-Current message: {{chatMessage.message}}<br />
-<br/>
-Message: <input [(ngModel)]='chatMessage.message' /><br/>
-<button id="sendButton" (click)="sendMessage()">Send</button>
+Message: <input [(ngModel)]='currentMessage' [(disabled)]='!connected' /><br/>
+<button id="sendButton" (click)="sendMessage()">Send</button><br/>
+
+<table class='table' *ngIf="chatMessages">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Message</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let chatMessage of chatMessages">
+			<td>{{ chatMessage.Id }}</td>
+			<td>{{ chatMessage.Message }}</td>
+		</tr>
+	</tbody>
+</table>

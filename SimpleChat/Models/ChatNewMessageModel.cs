@@ -2,6 +2,6 @@
 {
 	public sealed class ChatNewMessageModel
 	{
-		public string Text { get; set; }
+		public string Message { get; set; }
 	}
 }

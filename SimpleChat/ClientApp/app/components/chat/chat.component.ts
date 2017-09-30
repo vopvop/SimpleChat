@@ -1,4 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Inject } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { HubConnection } from "@aspnet/signalr-client";
 
 @Component({
 	selector: 'chat',
@@ -6,15 +8,85 @@
 })
 export class ChatComponent {
 
-	chatMessage: ChatMessage = new ChatMessage();
+	public currentMessage: string = "enter your text";
+
+	public chatMessages: ChatMessage[];
+
+	private chatHub: HubConnection;
+
+	private http: Http;
+
+	private originUrl: string;
+
+	public connected: boolean = false;
+
+	constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string)
+	{
+		this.http = http;
+		this.originUrl = originUrl;
+
+		this.chatHub = new HubConnection(originUrl + "/chathub");
+
+		this.chatHub.on(
+			"Send",
+			data => this.receiveMessage(data));
+
+		this.chatHub
+			.start()
+			.catch(error => console.log(error));
+
+		this.connected = true;
+	}
+
+	private receiveMessage(data: any)
+	{
+		if (this.chatMessages == null)
+			this.chatMessages = [];
+
+		let chatMessage = data as ChatMessage;
+
+		this.chatMessages.push(chatMessage);
+	}
 
 	sendMessage()
 	{
-		alert(this.chatMessage.message);
+		if (this.connected == false)
+		{
+			alert("Please, wait...");
+
+			return;
+		}
+
+		if (this.currentMessage == "")
+		{
+			alert("Please, enter your message");
+
+			return;
+		}
+
+		let newMessage = new CreateChatMessage();
+
+		newMessage.Message = this.currentMessage;
+
+		var url = this.originUrl + "/api/chat";
+
+		let header = new Headers({ 'Content-Type': 'application/json' });
+		let options = new RequestOptions({ headers: header });
+
+		this.http.post(url, newMessage, options)
+			.subscribe(data => {
+				this.currentMessage = "";
+			}, error => {
+				console.log(JSON.stringify(error.json()));
+			});
 	}
 }
 
 export class ChatMessage {
-	id: string = "-1";
-	message: string = "new message";
+	Id: string = "-1";
+	Message: string = "new message";
+}
+
+export class CreateChatMessage {
+	Message: string;
 }
