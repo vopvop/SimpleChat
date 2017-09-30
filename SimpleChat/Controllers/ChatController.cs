@@ -33,8 +33,8 @@
 
 		// POST api/chat
 		[HttpPost]
-		public async Task<ChatMessageModel> Post([FromBody] ChatNewMessageModel message) =>
-			await _chatService.Send(message.Text);
+		public async Task<ChatMessageModel> Post([FromBody] ChatNewMessageModel chatMessage) =>
+			await _chatService.Send(chatMessage.Message);
 
 		// PUT api/chat/<guid>
 		[HttpPut("{id}")]

@@ -46,6 +46,7 @@
     "zone.js": "0.8.10"
   },
   "devDependencies": {
+    "@aspnet/signalr-client": "^1.0.0-alpha1-final",
     "@types/chai": "3.5.2",
     "@types/jasmine": "2.5.47",
     "chai": "3.5.0",
