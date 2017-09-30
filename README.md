@@ -32,11 +32,11 @@ namespace SimpleChat.Hubs
 	}
 }
 ```
-4. Add support for SignalR in Startup.cs. Enable SignalR for application:
+4. Add support for SignalR in Startup.cs. Enable SignalR for our application:
 ```csharp
 services.AddSignalR();
 ```
-Create route mapping for SignalR Hub implementation:
+Create route mapping for our Chat SignalR Hub implementation:
     
 ```csharp
 app.UseSignalR(routes =>
@@ -47,7 +47,7 @@ app.UseSignalR(routes =>
 ```
 npm install @aspnet/signalr-client
 ```
-6. Create chat Typescipt component with HTML template. Create, setup and start SignalR's HubConnection:
+6. Now we can create, setup and start SignalR's HubConnection in a Typescript component:
 ```typescript
 this.chatHub = new HubConnection(originUrl + "/chathub");
 
