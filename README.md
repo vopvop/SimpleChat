@@ -61,5 +61,5 @@ this.chatHub
 ```
 This is it.
 ## Useful links
-SignalR home page on GitHub: https://github.com/aspnet/SignalR
-SignalR for ASP.NET Core 2.0: https://blogs.msdn.microsoft.com/webdev/2017/09/14/announcing-signalr-for-asp-net-core-2-0/
+* SignalR home page on GitHub: https://github.com/aspnet/SignalR
+* SignalR for ASP.NET Core 2.0: https://blogs.msdn.microsoft.com/webdev/2017/09/14/announcing-signalr-for-asp-net-core-2-0/
