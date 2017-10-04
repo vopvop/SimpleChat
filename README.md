@@ -3,7 +3,8 @@ Another one example of text messages exchange service. Based on the next libs li
 1. ASP.NET Core 2.0;
 1. SignalR 1.0.0-alpha1-final for ASP.NET Coer 2.0;
 1. Angular 4.1.2;
-1. Typescript 2.3.
+1. Typescript 2.3;
+1. Swagger 1.0.0.
 ## How to
 To implement SignalR usage on ASP.NET Core app you should:
 1. Create ASP.NET Core project;
@@ -63,3 +64,4 @@ This is it.
 ## Useful links
 * SignalR home page on GitHub: https://github.com/aspnet/SignalR
 * SignalR for ASP.NET Core 2.0: https://blogs.msdn.microsoft.com/webdev/2017/09/14/announcing-signalr-for-asp-net-core-2-0/
+* Swagger: https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio
