@@ -6,8 +6,12 @@ namespace SimpleChat
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
+	using Microsoft.Extensions.PlatformAbstractions;
 	using SimpleChat.Hubs;
 	using SimpleChat.Services;
+
+	using Swashbuckle.AspNetCore.Swagger;
+	using System.IO;
 
 	public sealed class Startup
 	{
@@ -23,7 +27,6 @@ namespace SimpleChat
 			Configuration = builder.Build();
 		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -47,6 +50,12 @@ namespace SimpleChat
 
 			app.UseSignalR(routes => routes.MapHub<ChatHub>("chathub"));
 
+			app.UseSwagger();
+			app.UseSwaggerUI(c =>
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chat API V1");
+			});
+
 			app.UseMvc(
 				routes =>
 				{
@@ -64,10 +73,8 @@ namespace SimpleChat
 				});
 		}
 
-		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			// Add framework services.
 			services.AddMvc();
 			services.AddSignalR();
 
@@ -77,6 +84,21 @@ namespace SimpleChat
 			services.AddSingleton<INotificationService, NotificationService>();
 
 			services.AddScoped<IChatService, ChatService>();
+
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc(
+					"v1",
+					new Info
+					{
+						Title = "Chat API",
+						Version = "v1"
+					});
+
+				var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+				var xmlPath = Path.Combine(basePath, "SimpleChat.xml");
+				c.IncludeXmlComments(xmlPath);
+			});
 		}
 	}
 }

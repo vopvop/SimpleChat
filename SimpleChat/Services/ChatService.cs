@@ -24,7 +24,11 @@
 			_timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
 		}
 
-		public async Task<IEnumerable<ChatMessageModel>> Get() => await _chatMessageStorage.Pull();
+		public async Task<IEnumerable<ChatMessageModel>> Get() =>
+			await _chatMessageStorage.GetAll();
+
+		public async Task<ChatMessageModel> Get(Guid messageUid) =>
+			await _chatMessageStorage.Get(messageUid);
 
 		public async Task<ChatMessageModel> Send(string message)
 		{
