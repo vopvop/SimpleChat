@@ -2,6 +2,9 @@
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HubConnection } from "@aspnet/signalr-client";
 
+import { ChatMessageModel } from '../../models/ChatMessageModel';
+import { CreateChatMessageModel } from '../../models/CreateChatMessageModel';
+
 @Component({
 	selector: 'chat',
 	templateUrl: './chat.component.html'
@@ -10,7 +13,7 @@ export class ChatComponent {
 
 	public currentMessage: string = "enter your text";
 
-	public chatMessages: ChatMessage[];
+	public chatMessages: ChatMessageModel[];
 
 	private chatHub: HubConnection;
 
@@ -43,7 +46,7 @@ export class ChatComponent {
 		if (this.chatMessages == null)
 			this.chatMessages = [];
 
-		let chatMessage = data as ChatMessage;
+		let chatMessage = data as ChatMessageModel;
 
 		this.chatMessages.push(chatMessage);
 	}
@@ -64,7 +67,7 @@ export class ChatComponent {
 			return;
 		}
 
-		let newMessage = new CreateChatMessage();
+		let newMessage = new CreateChatMessageModel();
 
 		newMessage.Message = this.currentMessage;
 
@@ -80,13 +83,4 @@ export class ChatComponent {
 				console.log(JSON.stringify(error.json()));
 			});
 	}
-}
-
-export class ChatMessage {
-	Id: string = "-1";
-	Message: string = "new message";
-}
-
-export class CreateChatMessage {
-	Message: string;
 }
