@@ -9,34 +9,59 @@
 	using SimpleChat.Models;
 	using SimpleChat.Services;
 
+	/// <summary>
+	/// Chat service controller
+	/// </summary>
 	[Route("api/[controller]")]
 	public sealed class ChatController: Controller
 	{
 		private readonly IChatService _chatService;
 
+		/// <summary>
+		/// Chat service controller default constructor
+		/// </summary>
+		/// <param name="chatService">Chat messaging service</param>
 		public ChatController(IChatService chatService)
 		{
 			_chatService = chatService ?? throw new ArgumentNullException(nameof(chatService));
 		}
 
-		// DELETE api/chat/<guid>
+		/// <summary>
+		/// Delete chat message
+		/// </summary>
+		/// <param name="id">Chat message UID</param>
 		[HttpDelete("{id}")]
 		public void Delete(Guid id) => throw new NotImplementedException();
 
-		// GET: api/chat
+		/// <summary>
+		/// Get all chat messages
+		/// </summary>
+		/// <returns></returns>
 		[HttpGet]
 		public async Task<IEnumerable<ChatMessageModel>> Get() => await _chatService.Get();
 
-		// GET api/chat/<guid>
+		/// <summary>
+		/// Get chat message
+		/// </summary>
+		/// <param name="id">Chat message UID</param>
+		/// <returns></returns>
 		[HttpGet("{id}")]
-		public string Get(Guid id) => throw new NotImplementedException();
+		public async Task<ChatMessageModel> Get(Guid id) => await _chatService.Get(id);
 
-		// POST api/chat
+		/// <summary>
+		/// Post new chat message
+		/// </summary>
+		/// <param name="chatMessage">Chat message text</param>
+		/// <returns></returns>
 		[HttpPost]
 		public async Task<ChatMessageModel> Post([FromBody] ChatNewMessageModel chatMessage) =>
 			await _chatService.Send(chatMessage.Message);
 
-		// PUT api/chat/<guid>
+		/// <summary>
+		/// Update chat message
+		/// </summary>
+		/// <param name="id">Chat message UID</param>
+		/// <param name="value">Chat message text</param>
 		[HttpPut("{id}")]
 		public void Put(Guid id, [FromBody] string value) => throw new NotImplementedException();
 	}

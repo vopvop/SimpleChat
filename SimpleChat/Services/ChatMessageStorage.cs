@@ -19,8 +19,11 @@
 			_chatMessageIdGenerator = chatMessageIdGenerator ?? throw new ArgumentNullException(nameof(chatMessageIdGenerator));
 		}
 
-		public async Task<IEnumerable<ChatMessageModel>> Pull() =>
-			await Task.Factory.StartNew(() => _messageQueue.AsEnumerable());
+		public Task<ChatMessageModel> Get(Guid messageUid) =>
+			Task.Factory.StartNew(() => _messageQueue.SingleOrDefault(_ => _.Id == messageUid));
+
+		public Task<IEnumerable<ChatMessageModel>> GetAll() =>
+			Task.Factory.StartNew(() => _messageQueue.AsEnumerable());
 
 		public async Task Push(ChatMessageModel chatMessage)
 		{
