@@ -44,7 +44,7 @@ app.UseSignalR(routes =>
   routes.MapHub<ChatHub>("chathub")
 );
 ```
-5. Install the latest version of ASP.NET Core SignalR package:
+5. Install the latest version of the ASP.NET Core SignalR NPM package:
 ```
 npm install @aspnet/signalr-client
 ```
@@ -60,7 +60,7 @@ this.chatHub
   .start()
   .catch(error => console.log(error));
 ```
-This is it.
+That is all.
 ## Useful links
 * SignalR home page on GitHub: https://github.com/aspnet/SignalR
 * SignalR for ASP.NET Core 2.0: https://blogs.msdn.microsoft.com/webdev/2017/09/14/announcing-signalr-for-asp-net-core-2-0/
