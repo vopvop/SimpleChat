@@ -26,10 +26,14 @@
 		[Required]
 		public DateTime ReceviedUtc { get; set; }
 
-		public ChatMessageModel(string message, DateTime receivedUtc)
+		[Required]
+		public UserInfoModel User { get; set; }
+
+		public ChatMessageModel(string message, DateTime receivedUtc, UserInfoModel user)
 		{
 			Message = message ?? throw new ArgumentNullException(nameof(message));
 			ReceviedUtc = receivedUtc;
+			User = user;
 		}
 	}
 }

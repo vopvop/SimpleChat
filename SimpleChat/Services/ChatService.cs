@@ -5,6 +5,7 @@
 	using System.Threading.Tasks;
 
 	using SimpleChat.Models;
+	using SimpleChat.Utils;
 
 	internal sealed class ChatService: IChatService
 	{
@@ -14,14 +15,18 @@
 
 		private readonly ITimeService _timeService;
 
+		private readonly IUserInfoProvider _userInfoProvider;
+
 		public ChatService(
 			IChatMessageStorage chatMessageStorage,
 			INotificationService notificationService,
-			ITimeService timeService)
+			ITimeService timeService,
+			IUserInfoProvider userInfoProvider)
 		{
 			_chatMessageStorage = chatMessageStorage ?? throw new ArgumentNullException(nameof(chatMessageStorage));
 			_notificationService = notificationService ?? throw new ArgumentNullException(nameof(notificationService));
 			_timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
+			_userInfoProvider = userInfoProvider ?? throw new ArgumentNullException(nameof(userInfoProvider));
 		}
 
 		public async Task<IEnumerable<ChatMessageModel>> Get() =>
@@ -34,7 +39,9 @@
 		{
 			var currentDateTimeUtc = await _timeService.GetUtc();
 
-			var chatMessage = new ChatMessageModel(message, currentDateTimeUtc);
+			var user = _userInfoProvider.Get();
+
+			var chatMessage = new ChatMessageModel(message, currentDateTimeUtc, user);
 
 			await _chatMessageStorage.Push(chatMessage);
 

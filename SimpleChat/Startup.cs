@@ -2,6 +2,7 @@ namespace SimpleChat
 {
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
+	using Microsoft.AspNetCore.Http;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Rewrite;
 	using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -11,7 +12,7 @@ namespace SimpleChat
 	using Microsoft.Extensions.PlatformAbstractions;
 	using SimpleChat.Hubs;
 	using SimpleChat.Services;
-
+	using SimpleChat.Utils;
 	using Swashbuckle.AspNetCore.Swagger;
 	using System.IO;
 
@@ -89,12 +90,15 @@ namespace SimpleChat
 			services.AddMvc();
 			services.AddSignalR();
 
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 			services.AddSingleton<ITimeService, TimeService>();
 			services.AddSingleton<IChatMessageStorage, ChatMessageStorage>();
 			services.AddSingleton<IChatMessageIdGenerator, ChatMessageIdGenerator>();
 			services.AddSingleton<INotificationService, NotificationService>();
 
 			services.AddScoped<IChatService, ChatService>();
+			services.AddScoped<IUserInfoProvider, UserInfoProvider>();
 
 			services.Configure<MvcOptions>(options =>
 			{
