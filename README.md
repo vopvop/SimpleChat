@@ -1,7 +1,7 @@
 # Simple chat
 Another one example of text messages exchange service. Based on the next libs list:
 1. ASP.NET Core 2.0;
-1. SignalR 1.0.0-alpha1-final for ASP.NET Coer 2.0;
+1. SignalR 1.0.0-alpha1-final for ASP.NET Core 2.0;
 1. Angular 4.1.2;
 1. Typescript 2.3;
 1. Swagger 1.0.0.
