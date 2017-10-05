@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b4b7f3cfcb0a84c379d2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2a78f48608c143bf7eeb"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -9391,7 +9391,7 @@ module.exports = "<div class='container-fluid'>\r\n    <div class='row'>\r\n    
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Chat</h1>\r\nMessage: <input [(ngModel)]='currentMessage' [(disabled)]='!connected' /><br/>\r\n<button id=\"sendButton\" (click)=\"sendMessage()\">Send</button><br/>\r\n\r\n<table class='table' *ngIf=\"chatMessages\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th>Id</th>\r\n\t\t\t<th>Message</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor=\"let chatMessage of chatMessages\">\r\n\t\t\t<td>{{ chatMessage.Id }}</td>\r\n\t\t\t<td>{{ chatMessage.Message }}</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>";
+module.exports = "<h1>Chat</h1>\r\nMessage: <input [(ngModel)]='currentMessage' [(disabled)]='!connected' /><br/>\r\n<button id=\"sendButton\" (click)=\"sendMessage()\">Send</button><br/>\r\n\r\n<table class='table' *ngIf=\"chatMessages\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th>Id</th>\r\n\t\t\t<th>User</th>\r\n\t\t\t<th>Message</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor=\"let chatMessage of chatMessages\">\r\n\t\t\t<td>{{ chatMessage.Id }}</td>\r\n\t\t\t<td>{{ chatMessage.User.Name }}</td>\r\n\t\t\t<td>{{ chatMessage.Message }}</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>";
 
 /***/ }),
 /* 57 */
