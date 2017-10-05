@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ef1dd57ed47afa1e161f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b4b7f3cfcb0a84c379d2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -8786,7 +8786,7 @@ var ChatComponent = (function () {
         this.connected = false;
         this.http = http;
         this.originUrl = originUrl;
-        this.chatHub = new signalr_client_1.HubConnection(originUrl + "/chathub");
+        this.chatHub = new signalr_client_1.HubConnection(originUrl + "/chathub", { transport: signalr_client_1.TransportType.WebSockets | signalr_client_1.TransportType.LongPolling });
         this.chatHub.on("Send", function (data) { return _this.receiveMessage(data); });
         this.chatHub
             .start()

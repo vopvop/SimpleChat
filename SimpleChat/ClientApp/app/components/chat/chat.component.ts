@@ -1,6 +1,6 @@
 ﻿import { Component, Inject } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { HubConnection } from "@aspnet/signalr-client";
+import { HubConnection, TransportType  } from "@aspnet/signalr-client";
 
 import { ChatMessageModel } from '../../models/ChatMessageModel';
 import { CreateChatMessageModel } from '../../models/CreateChatMessageModel';
@@ -23,12 +23,13 @@ export class ChatComponent {
 
 	public connected: boolean = false;
 
-	constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string)
-	{
+	constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string) {
 		this.http = http;
 		this.originUrl = originUrl;
 
-		this.chatHub = new HubConnection(originUrl + "/chathub");
+		this.chatHub = new HubConnection(
+			originUrl + "/chathub",
+			{ transport: TransportType.WebSockets | TransportType.LongPolling });
 
 		this.chatHub.on(
 			"Send",
@@ -41,8 +42,7 @@ export class ChatComponent {
 		this.connected = true;
 	}
 
-	private receiveMessage(data: any)
-	{
+	private receiveMessage(data: any) {
 		if (this.chatMessages == null)
 			this.chatMessages = [];
 
@@ -51,17 +51,14 @@ export class ChatComponent {
 		this.chatMessages.push(chatMessage);
 	}
 
-	sendMessage()
-	{
-		if (this.connected == false)
-		{
+	sendMessage() {
+		if (this.connected == false) {
 			alert("Please, wait...");
 
 			return;
 		}
 
-		if (this.currentMessage == "")
-		{
+		if (this.currentMessage == "") {
 			alert("Please, enter your message");
 
 			return;

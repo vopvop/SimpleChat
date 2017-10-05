@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 
+	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 
 	using SimpleChat.Models;
@@ -12,6 +13,7 @@
 	/// <summary>
 	/// Chat service controller
 	/// </summary>
+	[Authorize]
 	[Route("api/[controller]")]
 	public sealed class ChatController: Controller
 	{

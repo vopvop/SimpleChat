@@ -2,6 +2,8 @@ namespace SimpleChat
 {
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
+	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.AspNetCore.Rewrite;
 	using Microsoft.AspNetCore.SpaServices.Webpack;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,11 @@ namespace SimpleChat
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
 
+			var options = new RewriteOptions()
+				.AddRedirectToHttps();
+
+			app.UseRewriter(options);
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -50,11 +57,15 @@ namespace SimpleChat
 
 			app.UseSignalR(routes => routes.MapHub<ChatHub>("chathub"));
 
+#if DEBUG
+
 			app.UseSwagger();
 			app.UseSwaggerUI(c =>
 			{
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chat API V1");
 			});
+
+#endif
 
 			app.UseMvc(
 				routes =>
@@ -85,6 +96,13 @@ namespace SimpleChat
 
 			services.AddScoped<IChatService, ChatService>();
 
+			services.Configure<MvcOptions>(options =>
+			{
+				options.Filters.Add(new RequireHttpsAttribute());
+			});
+
+#if DEBUG
+
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc(
@@ -99,6 +117,8 @@ namespace SimpleChat
 				var xmlPath = Path.Combine(basePath, "SimpleChat.xml");
 				c.IncludeXmlComments(xmlPath);
 			});
+
+#endif
 		}
 	}
 }

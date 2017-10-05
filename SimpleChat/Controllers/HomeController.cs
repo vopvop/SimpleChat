@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplicationBasic.Controllers
@@ -5,6 +6,7 @@ namespace WebApplicationBasic.Controllers
 	/// <summary>
 	/// Default controller
 	/// </summary>
+	[Authorize]
 	public class HomeController: Controller
 	{
 		/// <summary>
