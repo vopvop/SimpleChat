@@ -64,4 +64,5 @@ That is all.
 ## Useful links
 * SignalR home page on GitHub: https://github.com/aspnet/SignalR
 * SignalR for ASP.NET Core 2.0: https://blogs.msdn.microsoft.com/webdev/2017/09/14/announcing-signalr-for-asp-net-core-2-0/
+* SignalR with Windows authentication: http://msharonov.blogspot.com/2017/10/signalr-windows-authentication.html
 * Swagger: https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio
