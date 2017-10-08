@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
 		"moduleResolution": "node",
-		"target": "es5",
+		"target": "es6",
 		"sourceMap": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"skipDefaultLibCheck": true,
-		"lib": [ "es6", "dom" ],
+		"lib": [ "es2017", "dom" ],
 		"types": [ "node" ]
 	},
 	"exclude": [ "bin", "node_modules" ],
