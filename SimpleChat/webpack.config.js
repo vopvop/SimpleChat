@@ -1,5 +1,4 @@
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
@@ -17,6 +16,10 @@ module.exports = (env) => {
 		},
 		module: {
 			rules: [
+				{
+					test: /\.js$/,
+					use: 'babel-loader?presets[]=es2015'
+				},
 				{ test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] },
 				{ test: /\.html$/, use: 'html-loader?minimize=false' },
 				{ test: /\.css$/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize'] },
@@ -44,34 +47,29 @@ module.exports = (env) => {
 			})
 		] : [
 				// Plugins that apply in production builds only
-				new UglifyJSPlugin({
-					parallel: {
-						cache: true,
-						workers: 2
-					}
-				}),
+				new webpack.optimize.UglifyJsPlugin()
 			])
-	});
+});
 
-	// Configuration for server-side (prerendering) bundle suitable for running in Node
-	const serverBundleConfig = merge(sharedConfig, {
-		resolve: { mainFields: ['main'] },
-		entry: { 'main-server': './ClientApp/boot-server.ts' },
-		plugins: [
-			new webpack.DllReferencePlugin({
-				context: __dirname,
-				manifest: require('./ClientApp/dist/vendor-manifest.json'),
-				sourceType: 'commonjs2',
-				name: './vendor'
-			})
-		],
-		output: {
-			libraryTarget: 'commonjs',
-			path: path.join(__dirname, './ClientApp/dist')
-		},
-		target: 'node',
-		devtool: 'inline-source-map'
-	});
+// Configuration for server-side (prerendering) bundle suitable for running in Node
+const serverBundleConfig = merge(sharedConfig, {
+	resolve: { mainFields: ['main'] },
+	entry: { 'main-server': './ClientApp/boot-server.ts' },
+	plugins: [
+		new webpack.DllReferencePlugin({
+			context: __dirname,
+			manifest: require('./ClientApp/dist/vendor-manifest.json'),
+			sourceType: 'commonjs2',
+			name: './vendor'
+		})
+	],
+	output: {
+		libraryTarget: 'commonjs',
+		path: path.join(__dirname, './ClientApp/dist')
+	},
+	target: 'node',
+	devtool: 'inline-source-map'
+});
 
-	return [clientBundleConfig, serverBundleConfig];
+return [clientBundleConfig, serverBundleConfig];
 };
