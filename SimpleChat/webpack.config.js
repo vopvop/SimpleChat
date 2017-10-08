@@ -16,10 +16,7 @@ module.exports = (env) => {
 		},
 		module: {
 			rules: [
-				{
-					test: /\.js$/,
-					use: 'babel-loader?presets[]=es2015'
-				},
+				{ test: /\.js$/, use: 'babel-loader?presets[]=es2015' },
 				{ test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] },
 				{ test: /\.html$/, use: 'html-loader?minimize=false' },
 				{ test: /\.css$/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize'] },
