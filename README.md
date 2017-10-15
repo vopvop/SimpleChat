@@ -8,11 +8,18 @@ Another one example of text messages exchange service. Based on the next libs li
 1. Swagger 1.0.0 with Autorest API client codegen.
 ## How to
 To implement SignalR usage on ASP.NET Core app you should:
-1. Create ASP.NET Core project;
-1. Add NuGet references to the next libs:
+1. Create ASP.NET Core project:
+```
+dotnet new angular
+```
+2. Download NPM packages:
+```
+npm install
+```
+3. Add NuGet references to the next libs:
     1. `Microsoft.AspNetCore.All`;
     1. `Microsoft.AspNetCore.SignalR`.
-1. Implement nested from `Hub` or `Hub<T>` class:
+4. Implement nested from `Hub` or `Hub<T>` class:
 ```csharp
 namespace SimpleChat.Hubs
 {
@@ -34,7 +41,7 @@ namespace SimpleChat.Hubs
 	}
 }
 ```
-4. Add support for SignalR in Startup.cs. Enable SignalR for our application:
+5. Add support for SignalR in Startup.cs. Enable SignalR for our application:
 ```csharp
 services.AddSignalR();
 ```
@@ -45,11 +52,11 @@ app.UseSignalR(routes =>
   routes.MapHub<ChatHub>("chathub")
 );
 ```
-5. Install the latest version of the ASP.NET Core SignalR NPM package:
+6. Install the latest version of the ASP.NET Core SignalR NPM package:
 ```
 npm install @aspnet/signalr-client
 ```
-6. Now we can create, setup and start SignalR's HubConnection in a Typescript component:
+7. Now we can create, setup and start SignalR's HubConnection in a Typescript component:
 ```typescript
 this.chatHub = new HubConnection(originUrl + "/chathub");
 
@@ -61,7 +68,10 @@ this.chatHub
   .start()
   .catch(error => console.log(error));
 ```
-That is all.
+8. Profit! That is all. Now we can run our ASP.NET Core Angular application:
+```
+dotnet run
+```
 ## Useful links
 * Yeoman's home page on GitHub: https://github.com/OmniSharp/generator-aspnet
 	* Angular 2 SPA: https://blogs.msdn.microsoft.com/webdev/2017/02/14/building-single-page-applications-on-asp-net-core-with-javascriptservices/
