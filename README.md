@@ -64,7 +64,7 @@ this.chatHub
 That is all.
 ## Useful links
 * Yeoman's home page on GitHub: https://github.com/OmniSharp/generator-aspnet
-	* generator-aspnetcore-angular2: https://github.com/sgbj/generator-aspnetcore-angular2
+	* Angular 2 SPA: https://blogs.msdn.microsoft.com/webdev/2017/02/14/building-single-page-applications-on-asp-net-core-with-javascriptservices/
 * SignalR home page on GitHub: https://github.com/aspnet/SignalR
 * SignalR for ASP.NET Core 2.0: https://blogs.msdn.microsoft.com/webdev/2017/09/14/announcing-signalr-for-asp-net-core-2-0/
 * SignalR with Windows authentication: http://msharonov.blogspot.com/2017/10/signalr-windows-authentication.html
