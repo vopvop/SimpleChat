@@ -1,6 +1,7 @@
 # Simple chat
 Another one example of text messages exchange service. Based on the next libs list:
 1. ASP.NET Core 2.0;
+1. Yeoman generator;
 1. SignalR 1.0.0-alpha1-final for ASP.NET Core 2.0;
 1. Angular 4.1.2;
 1. Typescript 2.3;
@@ -62,6 +63,7 @@ this.chatHub
 ```
 That is all.
 ## Useful links
+* Yeoman's home page on GitHub: https://github.com/OmniSharp/generator-aspnet
 * SignalR home page on GitHub: https://github.com/aspnet/SignalR
 * SignalR for ASP.NET Core 2.0: https://blogs.msdn.microsoft.com/webdev/2017/09/14/announcing-signalr-for-asp-net-core-2-0/
 * SignalR with Windows authentication: http://msharonov.blogspot.com/2017/10/signalr-windows-authentication.html
