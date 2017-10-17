@@ -41,11 +41,11 @@ namespace SimpleChat.Hubs
 	}
 }
 ```
-5. Add support for SignalR in Startup.cs. Enable SignalR for our application:
+5. Add support for the SignalR in ```Startup.cs```. Enable SignalR for our application:
 ```csharp
 services.AddSignalR();
 ```
-Create route mapping for our Chat SignalR Hub implementation:
+Create route mapping for our SignalR's chat Hub implementation:
     
 ```csharp
 app.UseSignalR(routes =>
@@ -68,10 +68,11 @@ this.chatHub
   .start()
   .catch(error => console.log(error));
 ```
-8. Profit! That is all. Now we can run our ASP.NET Core Angular application:
+8. Profit! That is all. Now we can start our chat:
 ```
 dotnet run
 ```
+Note: Windows authentification is used by default.
 ## Useful links
 * Yeoman's home page on GitHub: https://github.com/OmniSharp/generator-aspnet
 	* Angular 2 SPA: https://blogs.msdn.microsoft.com/webdev/2017/02/14/building-single-page-applications-on-asp-net-core-with-javascriptservices/
