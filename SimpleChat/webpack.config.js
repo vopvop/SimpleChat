@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env) => {
 	// Configuration in common to both client-side and server-side bundles
@@ -16,14 +17,19 @@ module.exports = (env) => {
 		},
 		module: {
 			rules: [
-				{ test: /\.js$/, use: 'babel-loader?presets[]=es2015' },
 				{ test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] },
 				{ test: /\.html$/, use: 'html-loader?minimize=false' },
 				{ test: /\.css$/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize'] },
 				{ test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
 			]
 		},
-		plugins: [new CheckerPlugin()]
+		plugins: [
+			new CheckerPlugin(),
+			new UglifyJsPlugin(
+				{
+					sourceMap: true
+				})
+		]
 	};
 
 	// Configuration for client-side bundle suitable for running in browsers
