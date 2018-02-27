@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env) => {
 	// Configuration in common to both client-side and server-side bundles
@@ -24,11 +23,7 @@ module.exports = (env) => {
 			]
 		},
 		plugins: [
-			new CheckerPlugin(),
-			new UglifyJsPlugin(
-				{
-					sourceMap: true
-				})
+			new CheckerPlugin()
 		]
 	};
 
