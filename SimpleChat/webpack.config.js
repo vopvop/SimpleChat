@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const CheckerPlugin = require("awesome-typescript-loader").CheckerPlugin;
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = (env) => {
 	// Configuration in common to both client-side and server-side bundles
@@ -17,6 +16,15 @@ module.exports = (env) => {
 		},
 		module: {
 			rules: [
+				{
+					test: /\.js$/,
+					loader: "babel-loader",
+					exclude: /node_modules/,
+					query: {
+						plugins: ['transform-runtime'],
+						presets: ['es2015']
+					}
+				},
 				{ test: /\.ts$/, include: /ClientApp/, use: ["awesome-typescript-loader?silent=true", "angular2-template-loader"] },
 				{ test: /\.html$/, use: "html-loader?minimize=false" },
 				{ test: /\.css$/, use: ["to-string-loader", isDevBuild ? "css-loader" : "css-loader?minimize"] },
@@ -49,9 +57,6 @@ module.exports = (env) => {
 				]
 				: [
 					// Plugins that apply in production builds only
-					new UglifyJsPlugin({
-						parallel: 4
-					})
 				])
 		});
 

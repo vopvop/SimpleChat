@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const merge = require("webpack-merge");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = (env) => {
 	const extractCSS = new ExtractTextPlugin("vendor.css");
@@ -33,8 +32,9 @@ module.exports = (env) => {
 				"es6-shim",
 				"es6-promise",
 				"event-source-polyfill",
+				"babel-polyfill",
 				"jquery",
-				"zone.js",
+				"zone.js"
 			]
 		},
 		output: {
@@ -71,11 +71,7 @@ module.exports = (env) => {
 				})
 			].concat(isDevBuild
 				? []
-				: [
-					new UglifyJsPlugin({
-						parallel: 4
-					})
-				])
+				: [])
 		});
 
 	const serverBundleConfig = merge(sharedConfig,
