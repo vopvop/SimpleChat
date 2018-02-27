@@ -1,14 +1,21 @@
 {
 	"compilerOptions": {
-		"moduleResolution": "node",
 		"target": "es5",
+		"module": "es2015",
+		"moduleResolution": "node",
 		"sourceMap": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"skipDefaultLibCheck": true,
-		"lib": [ "es2015", "dom" ],
-		"types": [ "node" ]
+		"removeComments": true,
+		"lib": ["es2015", "dom"],
+		"typeRoots": [
+			"./node_modules/@types/"
+		]
 	},
-	"exclude": [ "bin", "node_modules" ],
-	"atom": { "rewriteTsconfig": false }
+	"exclude": ["bin", "node_modules"],
+	"atom": { "rewriteTsconfig": false },
+	"awesomeTypescriptLoaderOptions": {
+		"useWebpackText": true
+	}
 }

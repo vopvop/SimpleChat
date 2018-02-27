@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b564071fece1407ebd31"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6315684d7b790ab26fa8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -8627,20 +8627,25 @@ module.exports = function(hash, moduleMap, options) {
 
 /***/ }),
 /* 46 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_reflect_metadata__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_reflect_metadata___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_reflect_metadata__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_zone_js__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_zone_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_zone_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_dynamic__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_app_module_client__ = __webpack_require__(50);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(47);
-__webpack_require__(48);
-var core_1 = __webpack_require__(4);
-var platform_browser_dynamic_1 = __webpack_require__(49);
-var app_module_client_1 = __webpack_require__(50);
+
+
+
+
 if (true) {
     module['hot'].accept();
     module['hot'].dispose(function () {
-        // Before restarting the app, we create a new root element and dispose the old one
         var oldRootElem = document.querySelector('app');
         var newRootElem = document.createElement('app');
         oldRootElem.parentNode.insertBefore(newRootElem, oldRootElem);
@@ -8648,11 +8653,9 @@ if (true) {
     });
 }
 else {
-    core_1.enableProdMode();
+    enableProdMode();
 }
-// Note: @ng-tools/webpack looks for the following expression when performing production
-// builds. Don't change how this line looks, otherwise you may break tree-shaking.
-var modulePromise = platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_client_1.AppModule);
+var modulePromise = Object(__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_dynamic__["platformBrowserDynamic"])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app_app_module_client__["a" /* AppModule */]);
 
 
 /***/ }),
@@ -9800,42 +9803,46 @@ module.exports = (__webpack_require__(0))(39);
 
 /***/ }),
 /* 50 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_module_shared__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(4);
-var platform_browser_1 = __webpack_require__(51);
-var forms_1 = __webpack_require__(52);
-var http_1 = __webpack_require__(18);
-var app_module_shared_1 = __webpack_require__(53);
+
+
+
+
+
 var AppModule = (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            bootstrap: __WEBPACK_IMPORTED_MODULE_4__app_module_shared__["a" /* sharedConfig */].bootstrap,
+            declarations: __WEBPACK_IMPORTED_MODULE_4__app_module_shared__["a" /* sharedConfig */].declarations,
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["BrowserModule"],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"],
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["HttpModule"]
+            ].concat(__WEBPACK_IMPORTED_MODULE_4__app_module_shared__["a" /* sharedConfig */].imports),
+            providers: [
+                { provide: 'ORIGIN_URL', useValue: location.origin }
+            ]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        bootstrap: app_module_shared_1.sharedConfig.bootstrap,
-        declarations: app_module_shared_1.sharedConfig.declarations,
-        imports: [
-            platform_browser_1.BrowserModule,
-            forms_1.FormsModule,
-            http_1.HttpModule
-        ].concat(app_module_shared_1.sharedConfig.imports),
-        providers: [
-            { provide: 'ORIGIN_URL', useValue: location.origin }
-        ]
-    })
-], AppModule);
-exports.AppModule = AppModule;
+
 
 
 /***/ }),
@@ -9852,29 +9859,33 @@ module.exports = (__webpack_require__(0))(37);
 
 /***/ }),
 /* 53 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sharedConfig; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_app_component__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_navmenu_navmenu_component__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_home_home_component__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_chat_chat_component__ = __webpack_require__(65);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(54);
-var app_component_1 = __webpack_require__(55);
-var navmenu_component_1 = __webpack_require__(59);
-var home_component_1 = __webpack_require__(63);
-var chat_component_1 = __webpack_require__(65);
-exports.sharedConfig = {
-    bootstrap: [app_component_1.AppComponent],
+
+
+
+
+var sharedConfig = {
+    bootstrap: [__WEBPACK_IMPORTED_MODULE_1__components_app_app_component__["a" /* AppComponent */]],
     declarations: [
-        app_component_1.AppComponent,
-        navmenu_component_1.NavMenuComponent,
-        chat_component_1.ChatComponent,
-        home_component_1.HomeComponent
+        __WEBPACK_IMPORTED_MODULE_1__components_app_app_component__["a" /* AppComponent */],
+        __WEBPACK_IMPORTED_MODULE_2__components_navmenu_navmenu_component__["a" /* NavMenuComponent */],
+        __WEBPACK_IMPORTED_MODULE_4__components_chat_chat_component__["a" /* ChatComponent */],
+        __WEBPACK_IMPORTED_MODULE_3__components_home_home_component__["a" /* HomeComponent */]
     ],
     imports: [
-        router_1.RouterModule.forRoot([
+        __WEBPACK_IMPORTED_MODULE_0__angular_router__["RouterModule"].forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: home_component_1.HomeComponent },
-            { path: 'chat', component: chat_component_1.ChatComponent },
+            { path: 'home', component: __WEBPACK_IMPORTED_MODULE_3__components_home_home_component__["a" /* HomeComponent */] },
+            { path: 'chat', component: __WEBPACK_IMPORTED_MODULE_4__components_chat_chat_component__["a" /* ChatComponent */] },
             { path: '**', redirectTo: 'home' }
         ])
     ]
@@ -9889,31 +9900,31 @@ module.exports = (__webpack_require__(0))(40);
 
 /***/ }),
 /* 55 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(4);
+
 var AppComponent = (function () {
     function AppComponent() {
     }
+    AppComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app',
+            template: __webpack_require__(56),
+            styles: [__webpack_require__(57)]
+        })
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app',
-        template: __webpack_require__(56),
-        styles: [__webpack_require__(57)]
-    })
-], AppComponent);
-exports.AppComponent = AppComponent;
+
 
 
 /***/ }),
@@ -9940,7 +9951,7 @@ module.exports = "<div class='container-fluid'>\r\n    <div class='row'>\r\n    
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(19)(undefined);
+exports = module.exports = __webpack_require__(19)(false);
 // imports
 
 
@@ -9952,31 +9963,31 @@ exports.push([module.i, "@media (max-width: 767px) {\r\n    /* On small screens,
 
 /***/ }),
 /* 59 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavMenuComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(4);
+
 var NavMenuComponent = (function () {
     function NavMenuComponent() {
     }
+    NavMenuComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'nav-menu',
+            template: __webpack_require__(60),
+            styles: [__webpack_require__(61)]
+        })
+    ], NavMenuComponent);
     return NavMenuComponent;
 }());
-NavMenuComponent = __decorate([
-    core_1.Component({
-        selector: 'nav-menu',
-        template: __webpack_require__(60),
-        styles: [__webpack_require__(61)]
-    })
-], NavMenuComponent);
-exports.NavMenuComponent = NavMenuComponent;
+
 
 
 /***/ }),
@@ -10003,7 +10014,7 @@ module.exports = "<div class='main-nav'>\r\n\t<div class='navbar navbar-inverse'
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(19)(undefined);
+exports = module.exports = __webpack_require__(19)(false);
 // imports
 
 
@@ -10015,30 +10026,30 @@ exports.push([module.i, "li .glyphicon {\r\n    margin-right: 10px;\r\n}\r\n\r\n
 
 /***/ }),
 /* 63 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(4);
+
 var HomeComponent = (function () {
     function HomeComponent() {
     }
+    HomeComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'home',
+            template: __webpack_require__(64)
+        })
+    ], HomeComponent);
     return HomeComponent;
 }());
-HomeComponent = __decorate([
-    core_1.Component({
-        selector: 'home',
-        template: __webpack_require__(64)
-    })
-], HomeComponent);
-exports.HomeComponent = HomeComponent;
+
 
 
 /***/ }),
@@ -10049,10 +10060,15 @@ module.exports = "<h1>Hello, world!</h1>\r\n<p>Welcome to your new single-page a
 
 /***/ }),
 /* 65 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__aspnet_signalr_client__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__aspnet_signalr_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__aspnet_signalr_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_CreateChatMessageModel__ = __webpack_require__(88);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10065,11 +10081,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(4);
-var http_1 = __webpack_require__(18);
-var signalr_client_1 = __webpack_require__(66);
-var CreateChatMessageModel_1 = __webpack_require__(88);
+
+
+
+
 var ChatComponent = (function () {
     function ChatComponent(http, originUrl) {
         var _this = this;
@@ -10077,7 +10092,7 @@ var ChatComponent = (function () {
         this.connected = false;
         this.http = http;
         this.originUrl = originUrl;
-        this.chatHub = new signalr_client_1.HubConnection(originUrl + "/chathub", { transport: signalr_client_1.TransportType.WebSockets | signalr_client_1.TransportType.LongPolling });
+        this.chatHub = new __WEBPACK_IMPORTED_MODULE_2__aspnet_signalr_client__["HubConnection"](originUrl + "/chathub", { transport: __WEBPACK_IMPORTED_MODULE_2__aspnet_signalr_client__["TransportType"].WebSockets | __WEBPACK_IMPORTED_MODULE_2__aspnet_signalr_client__["TransportType"].LongPolling });
         this.chatHub.on("Send", function (data) { return _this.receiveMessage(data); });
         this.chatHub
             .start()
@@ -10100,11 +10115,11 @@ var ChatComponent = (function () {
             alert("Please, enter your message");
             return;
         }
-        var newMessage = new CreateChatMessageModel_1.CreateChatMessageModel();
+        var newMessage = new __WEBPACK_IMPORTED_MODULE_3__models_CreateChatMessageModel__["a" /* CreateChatMessageModel */]();
         newMessage.Message = this.currentMessage;
         var url = this.originUrl + "/api/chat";
-        var header = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: header });
+        var header = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: header });
         this.http.post(url, newMessage, options)
             .subscribe(function (data) {
             _this.currentMessage = "";
@@ -10112,17 +10127,17 @@ var ChatComponent = (function () {
             console.log(JSON.stringify(error.json()));
         });
     };
+    ChatComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'chat',
+            template: __webpack_require__(89)
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])('ORIGIN_URL')),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], String])
+    ], ChatComponent);
     return ChatComponent;
 }());
-ChatComponent = __decorate([
-    core_1.Component({
-        selector: 'chat',
-        template: __webpack_require__(89)
-    }),
-    __param(1, core_1.Inject('ORIGIN_URL')),
-    __metadata("design:paramtypes", [http_1.Http, String])
-], ChatComponent);
-exports.ChatComponent = ChatComponent;
+
 
 
 /***/ }),
@@ -12695,17 +12710,16 @@ function encodeFloat (obj, forceFloat64) {
 
 /***/ }),
 /* 88 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateChatMessageModel; });
 var CreateChatMessageModel = (function () {
     function CreateChatMessageModel() {
     }
     return CreateChatMessageModel;
 }());
-exports.CreateChatMessageModel = CreateChatMessageModel;
+
 
 
 /***/ }),
