@@ -17,7 +17,7 @@ namespace SimpleChat.Services
 			_context = context ?? throw new ArgumentNullException(nameof(context));
 		}
 
-		public async Task Push(ChatMessageModel chatMessage)
+		public async Task PushAsync(ChatMessageModel chatMessage)
 		{
 			await _context.Clients.All.SendAsync("Send", chatMessage);
 		}

@@ -1,10 +1,9 @@
-﻿namespace SimpleChat.Services
-{
-	using System;
-	using System.Threading.Tasks;
+﻿using System;
 
+namespace SimpleChat.Services
+{
 	public interface ITimeService
 	{
-		Task<DateTime> GetUtc();
+		DateTime GetUtc();
 	}
 }

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplicationBasic.Controllers
+namespace SimpleChat.Controllers
 {
 	/// <summary>
 	/// Default controller

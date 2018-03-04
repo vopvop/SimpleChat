@@ -1,11 +1,11 @@
-﻿namespace SimpleChat.Services
+﻿using System.Threading.Tasks;
+
+using SimpleChat.Models;
+
+namespace SimpleChat.Services
 {
-	using System.Threading.Tasks;
-
-	using SimpleChat.Models;
-
 	internal interface INotificationService
 	{
-		Task Push(ChatMessageModel chatMessage);
+		Task PushAsync(ChatMessageModel chatMessage);
 	}
 }

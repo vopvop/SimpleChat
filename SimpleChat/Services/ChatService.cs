@@ -1,13 +1,13 @@
-﻿namespace SimpleChat.Services
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using SimpleChat.Models;
+using SimpleChat.Utils;
+
+namespace SimpleChat.Services
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading.Tasks;
-
-	using SimpleChat.Models;
-	using SimpleChat.Utils;
-
-	internal sealed class ChatService: IChatService
+	internal sealed class ChatService : IChatService
 	{
 		private readonly IChatMessageStorage _chatMessageStorage;
 
@@ -29,23 +29,21 @@
 			_userInfoProvider = userInfoProvider ?? throw new ArgumentNullException(nameof(userInfoProvider));
 		}
 
-		public async Task<IEnumerable<ChatMessageModel>> Get() =>
-			await _chatMessageStorage.GetAll();
+		public async Task<IReadOnlyCollection<ChatMessageModel>> GetAllAsync() => await _chatMessageStorage.GetAllAsync();
 
-		public async Task<ChatMessageModel> Get(Guid messageUid) =>
-			await _chatMessageStorage.Get(messageUid);
+		public async Task<ChatMessageModel> GetAsync(Guid messageUid) => await _chatMessageStorage.GetAsync(messageUid);
 
-		public async Task<ChatMessageModel> Send(string message)
+		public async Task<ChatMessageModel> SendAsync(string message)
 		{
-			var currentDateTimeUtc = await _timeService.GetUtc();
+			var currentDateTimeUtc = _timeService.GetUtc();
 
 			var user = _userInfoProvider.Get();
 
 			var chatMessage = new ChatMessageModel(message, currentDateTimeUtc, user);
 
-			await _chatMessageStorage.Push(chatMessage);
+			await _chatMessageStorage.PushAsync(chatMessage);
 
-			await _notificationService.Push(chatMessage);
+			await _notificationService.PushAsync(chatMessage);
 
 			return chatMessage;
 		}
