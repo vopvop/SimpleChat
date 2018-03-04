@@ -1,10 +1,12 @@
-﻿namespace SimpleChat.Services
-{
-	using System;
-	using System.Threading.Tasks;
+﻿using System;
 
-	internal sealed class TimeService: ITimeService
+namespace SimpleChat.Services
+{
+	internal sealed class TimeService : ITimeService
 	{
-		public async Task<DateTime> GetUtc() => await Task.Run(() => DateTime.UtcNow);
+		public DateTime GetUtc()
+		{
+			return DateTime.UtcNow;
+		}
 	}
 }

@@ -1,10 +1,10 @@
-﻿namespace SimpleChat.Services
-{
-	using System;
-	using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
-	internal sealed class ChatMessageIdGenerator: IChatMessageIdGenerator
+namespace SimpleChat.Services
+{
+	internal sealed class ChatMessageIdGenerator : IChatMessageIdGenerator
 	{
-		public async Task<Guid> GetNext() => await Task.Factory.StartNew(() => Guid.NewGuid());
+		public async Task<Guid> GetNextAsync() => await Task.Factory.StartNew(Guid.NewGuid);
 	}
 }

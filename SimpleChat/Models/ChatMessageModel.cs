@@ -1,27 +1,27 @@
-﻿namespace SimpleChat.Models
-{
-	using System;
-	using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace SimpleChat.Models
+{
 	/// <summary>
-	/// Chat message
+	///     Chat message
 	/// </summary>
 	public sealed class ChatMessageModel
 	{
 		/// <summary>
-		/// Chat message UID
+		///     Chat message UID
 		/// </summary>
 		[Required]
 		public Guid Id { get; set; }
 
 		/// <summary>
-		/// Chat message text
+		///     Chat message text
 		/// </summary>
 		[Required]
 		public string Message { get; set; }
 
 		/// <summary>
-		/// Chat message received time UTC
+		///     Chat message received time UTC
 		/// </summary>
 		[Required]
 		public DateTime ReceviedUtc { get; set; }

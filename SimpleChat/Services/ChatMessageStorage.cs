@@ -1,14 +1,14 @@
-﻿namespace SimpleChat.Services
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using SimpleChat.Models;
+
+namespace SimpleChat.Services
 {
-	using System;
-	using System.Collections.Concurrent;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading.Tasks;
-
-	using SimpleChat.Models;
-
-	internal sealed class ChatMessageStorage: IChatMessageStorage
+	internal sealed class ChatMessageStorage : IChatMessageStorage
 	{
 		private readonly IChatMessageIdGenerator _chatMessageIdGenerator;
 
@@ -19,17 +19,22 @@
 			_chatMessageIdGenerator = chatMessageIdGenerator ?? throw new ArgumentNullException(nameof(chatMessageIdGenerator));
 		}
 
-		public Task<ChatMessageModel> Get(Guid messageUid) =>
-			Task.Factory.StartNew(() => _messageQueue.SingleOrDefault(_ => _.Id == messageUid));
-
-		public Task<IEnumerable<ChatMessageModel>> GetAll() =>
-			Task.Factory.StartNew(() => _messageQueue.AsEnumerable());
-
-		public async Task Push(ChatMessageModel chatMessage)
+		public Task<IReadOnlyCollection<ChatMessageModel>> GetAllAsync()
 		{
-			if (chatMessage == null) throw new ArgumentNullException(nameof(chatMessage));
+			return Task.FromResult((IReadOnlyCollection<ChatMessageModel>) _messageQueue);
+		}
 
-			chatMessage.Id = await _chatMessageIdGenerator.GetNext();
+		public Task<ChatMessageModel> GetAsync(Guid messageUid)
+		{
+			return Task.Factory.StartNew(() => _messageQueue.SingleOrDefault(_ => _.Id == messageUid));
+		}
+
+		public async Task PushAsync(ChatMessageModel chatMessage)
+		{
+			if (chatMessage == null)
+				throw new ArgumentNullException(nameof(chatMessage));
+
+			chatMessage.Id = await _chatMessageIdGenerator.GetNextAsync();
 
 			_messageQueue.Enqueue(chatMessage);
 		}
