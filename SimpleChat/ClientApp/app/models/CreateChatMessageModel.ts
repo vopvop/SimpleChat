@@ -1,3 +1,3 @@
 ﻿export class CreateChatMessageModel {
-	Message: string;
+	message: string;
 }

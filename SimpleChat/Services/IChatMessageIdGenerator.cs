@@ -1,10 +1,10 @@
-﻿namespace SimpleChat.Services
-{
-	using System;
-	using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
+namespace SimpleChat.Services
+{
 	internal interface IChatMessageIdGenerator
 	{
-		Task<Guid> GetNext();
+		Task<Guid> GetNextAsync();
 	}
 }

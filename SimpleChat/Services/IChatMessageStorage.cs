@@ -1,17 +1,17 @@
-﻿namespace SimpleChat.Services
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using SimpleChat.Models;
+
+namespace SimpleChat.Services
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading.Tasks;
-
-	using SimpleChat.Models;
-
 	internal interface IChatMessageStorage
 	{
-		Task<IEnumerable<ChatMessageModel>> GetAll();
+		Task<ChatMessageModel> GetAsync(Guid messageUid);
 
-		Task<ChatMessageModel> Get(Guid messageUid);
+		Task<IReadOnlyCollection<ChatMessageModel>> GetAllAsync();
 
-		Task Push(ChatMessageModel chatMessage);
+		Task PushAsync(ChatMessageModel chatMessage);
 	}
 }

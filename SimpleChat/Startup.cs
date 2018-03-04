@@ -1,21 +1,24 @@
+using System.IO;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+
+using SimpleChat.Hubs;
+using SimpleChat.Services;
+using SimpleChat.Utils;
+
+using Swashbuckle.AspNetCore.Swagger;
+
 namespace SimpleChat
 {
-	using Microsoft.AspNetCore.Builder;
-	using Microsoft.AspNetCore.Hosting;
-	using Microsoft.AspNetCore.Http;
-	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Rewrite;
-	using Microsoft.AspNetCore.SpaServices.Webpack;
-	using Microsoft.Extensions.Configuration;
-	using Microsoft.Extensions.DependencyInjection;
-	using Microsoft.Extensions.Logging;
-	using Microsoft.Extensions.PlatformAbstractions;
-	using SimpleChat.Hubs;
-	using SimpleChat.Services;
-	using SimpleChat.Utils;
-	using Swashbuckle.AspNetCore.Swagger;
-	using System.IO;
-
 	public sealed class Startup
 	{
 		public IConfigurationRoot Configuration { get; }
@@ -24,8 +27,8 @@ namespace SimpleChat
 		{
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(env.ContentRootPath)
-				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+				.AddJsonFile("appsettings.json", true, true)
+				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
 				.AddEnvironmentVariables();
 			Configuration = builder.Build();
 		}
@@ -56,7 +59,7 @@ namespace SimpleChat
 
 			app.UseStaticFiles();
 
-			app.UseSignalR(routes => routes.MapHub<ChatHub>("chathub"));
+			app.UseSignalR(routes => routes.MapHub<ChatHub>("/chathub"));
 
 #if DEBUG
 
@@ -72,12 +75,12 @@ namespace SimpleChat
 				routes =>
 				{
 					routes.MapRoute(
-						name: "default",
-						template: "{controller=Home}/{action=Index}/{id?}");
+						"default",
+						"{controller=Home}/{action=Index}/{id?}");
 
 					routes.MapSpaFallbackRoute(
-						name: "spa-fallback",
-						defaults: new
+						"spa-fallback",
+						new
 						{
 							controller = "Home",
 							action = "Index"
@@ -87,7 +90,13 @@ namespace SimpleChat
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMvc();
+			services
+				.AddMvc(options =>
+				{
+					options.RespectBrowserAcceptHeader = true;
+				})
+				.AddXmlSerializerFormatters();
+
 			services.AddSignalR();
 
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
