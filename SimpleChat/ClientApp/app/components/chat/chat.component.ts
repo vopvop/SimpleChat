@@ -1,6 +1,6 @@
 ﻿import { Component, Inject } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { HubConnection, TransportType  } from "@aspnet/signalr-client";
+import { HubConnection, TransportType  } from "@aspnet/signalr";
 
 import { ChatMessageModel } from '../../models/ChatMessageModel';
 import { CreateChatMessageModel } from '../../models/CreateChatMessageModel';
@@ -11,7 +11,7 @@ import { CreateChatMessageModel } from '../../models/CreateChatMessageModel';
 })
 export class ChatComponent {
 
-	public currentMessage: string = "enter your text";
+	public currentMessage: string = "";
 
 	public chatMessages: ChatMessageModel[];
 
@@ -29,7 +29,9 @@ export class ChatComponent {
 
 		this.chatHub = new HubConnection(
 			originUrl + "/chathub",
-			{ transport: TransportType.WebSockets | TransportType.LongPolling });
+			{
+				transport: TransportType.WebSockets | TransportType.LongPolling
+			});
 
 		this.chatHub.on(
 			"Send",
@@ -46,32 +48,33 @@ export class ChatComponent {
 		if (this.chatMessages == null)
 			this.chatMessages = [];
 
-		let chatMessage = data as ChatMessageModel;
+		const chatMessage = data as ChatMessageModel;
 
 		this.chatMessages.push(chatMessage);
 	}
 
 	sendMessage() {
-		if (this.connected == false) {
+		if (this.connected === false) {
 			alert("Please, wait...");
 
 			return;
 		}
 
-		if (this.currentMessage == "") {
+		if (this.currentMessage === "") {
 			alert("Please, enter your message");
 
 			return;
 		}
 
-		let newMessage = new CreateChatMessageModel();
+		const newMessage = new CreateChatMessageModel();
 
-		newMessage.Message = this.currentMessage;
+		newMessage.message = this.currentMessage;
 
-		var url = this.originUrl + "/api/chat";
+		const url = this.originUrl + "/api/chat";
 
-		let header = new Headers({ 'Content-Type': 'application/json' });
-		let options = new RequestOptions({ headers: header });
+		const header = new Headers({ 'Content-Type': 'application/json' });
+
+		const options = new RequestOptions({ headers: header });
 
 		this.http.post(url, newMessage, options)
 			.subscribe(data => {

@@ -1,9 +1,12 @@
 ﻿export class ChatMessageModel {
-	Id: string = "-1";
-	Message: string = "new message";
-	User: UserInfoModel;
+
+	id: string = "-1";
+
+	message: string = "new message";
+
+	user: UserInfoModel;
 }
 
 export class UserInfoModel {
-	Name: string = "Jogn Doe";
+	name: string = "Jogn Doe";
 }

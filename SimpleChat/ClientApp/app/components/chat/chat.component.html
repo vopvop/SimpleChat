@@ -12,9 +12,9 @@ Message: <input [(ngModel)]='currentMessage' [(disabled)]='!connected' /><br/>
 	</thead>
 	<tbody>
 		<tr *ngFor="let chatMessage of chatMessages">
-			<td>{{ chatMessage.Id }}</td>
-			<td>{{ chatMessage.User.Name }}</td>
-			<td>{{ chatMessage.Message }}</td>
+			<td>{{ chatMessage.id }}</td>
+			<td>{{ chatMessage.user.name }}</td>
+			<td>{{ chatMessage.message }}</td>
 		</tr>
 	</tbody>
 </table>

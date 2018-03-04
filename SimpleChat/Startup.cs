@@ -56,7 +56,7 @@ namespace SimpleChat
 
 			app.UseStaticFiles();
 
-			app.UseSignalR(routes => routes.MapHub<ChatHub>("chathub"));
+			app.UseSignalR(routes => routes.MapHub<ChatHub>("/chathub"));
 
 #if DEBUG
 
