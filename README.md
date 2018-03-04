@@ -79,7 +79,7 @@ Note: Windows authentification is used by default.
 ## Swagger
 1. Install Swagger NuGet package:
 ```
-Install-package Swashbuckle
+Install-package Swashbuckle.AspNetCore
 ```
 2. Initalize Swagger UI module in your Startup.cs ```Configure()``` method:
 ```csharp
